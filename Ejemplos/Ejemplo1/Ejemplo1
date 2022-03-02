@@ -1,0 +1,50 @@
+Estudiar ocupacion memoria cache
+
+265 bits
+Ac = 2
+T. bs = 16 bits
+T.W = 4 bits
+
+256 byte/cache % 2 vias/cache = 156 byte/cache
+
+128 byte/via % 16 byte/bloque = 8 byte/via
+
+real=4  A(500,500), B(500,500)
+
+Codigo: 
+
+for(i=0;i<10;i++){
+    for(j=0;j<10;j++){
+        A[i][j]=A[i][j*3]+B[i][j]
+    }
+}
+
+i=0,j=0 | A(0,0),B(0,0) -> D.I (A) mod (c,w) = 0 -> A(0,0),B(0,0) dan fallo
+
+i=0,j=1 | A(0,1),A(0,3),B(0,1) -> D.I(B) mod(c,w) = 4
+
+i=0,j=2 | A(0,2),A(0,6),B(0,2) -> A(0,6) da fallo
+
+j=3 | A(0,3), A(0,9), B(0,3) -> A(0,9) da fallo
+
+j=4 | A(0,4), A(0,12), B(0,4)
+
+i=1,j=0 -> Salto de 500: A(0,0) -> A(0,1)
+
+i=1,j=1 -> A[1,6],A(1,9) -> A(1,12) tenemos una interferencia cruzada
+
+Cache:
+
+-> Primera via ocupada por completo
+-> 
+
+            v1                                               v2
+       w3        w2            w1        w0             w3  w2    w1    w0
+0   A(0,3)     A(0,2)        A(0,1)      A(0,0)
+1
+2
+3
+4   B(0,3)     B(0,2)        B(0,1)      B(0,0)
+5
+6
+7
