@@ -5,74 +5,44 @@
 */
 
 // Bibliotecas
-
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
 #include <time.h>
-#include <vector>
-
 using namespace std;
-
 // Tamano de la matriz
 const int tamano = 2048;
-
-float obtenerValorAleatorio(int a,int b){
-    return ( a + rand() % (b-a) )/100;
-}
-
-void productoMatrices1(std::vector < std::vector <double> > &A, 
-std::vector < std::vector <double> > &B, std::vector < std::vector <double> > &C){
-    for (size_t i = 0 ; i < tamano ; i++ ){
-        for (size_t j = 0 ; j < tamano ; j++ ){
-            float temporal = 0.0;
-            for (size_t k = 0 ; k < tamano ; k++ ){
-                temporal = temporal + A[i][k] * B[k][j];
-                C[i][j] = temporal ;
-            }
-        }
-    }
-}
+// Declaramos las matrices
+int A[tamano][tamano];
+int B[tamano][tamano];
+int C[tamano][tamano];
 
 // Funcion principal
 int main(){
+    clock_t t0;
     clock_t t1;
-    clock_t t2;
-    // Inicializamos la semilla aleatorio
-    srand(time(NULL));
-    // Declaramos las matrices de tamano 2048x2048
-    std::vector <std::vector<double>> A(tamano,std::vector<double>(tamano));
-    std::vector <std::vector<double>> B(tamano,std::vector<double>(tamano));
-    std::vector <std::vector<double>> C(tamano,std::vector<double>(tamano));; // Matriz resultado
-    // Rellenamos las matrices con valores aleatorios
-    for(int i=0; i<tamano; i++){ // Recorremos las filas de la matriz
-        for(int j=0; j<tamano; j++){ // Recorremos las columnas de la matriz
-            // Rellenamos ambas matrices
-            A[i][j] = obtenerValorAleatorio(95,105);
-            B[i][j] = obtenerValorAleatorio(90,106);
+    // Iniciamos inicio del temporizador
+    t0 = clock();
+    // Calculamos el producto de las matrices
+    for (int i = 0 ; i < tamano ; i++ ){
+        for (int j = 0 ; j < tamano ; j++ ){
+            for (int k = 0 ; k < tamano ; k++ ){
+                C[i][j] = C[i][j] + A[i][k] * B[k][j];
+            }
         }
     }
-    // Iniciamos inicio del temporizador
+    // Finalizamos el temporizador
     t1 = clock();
-    // Calculamos el producto de las matrices
-    productoMatrices1(A, B,C);
-    // Calculamos el tiempo del producto de las matrices
-    t1 = clock() - t1;
-    std::cout << "TU PUTA MADRE PROGRAMA DE LOS COJONES" << std::endl;
+    // Tiempo de ejecucion de los bucles en segundos
+    float tiempo = (float)(t1-t0) / CLOCKS_PER_SEC;
+    std::cout << "Se ha tardado " << tiempo*1000 << " ms en realizar el producto de las matrices" << std::endl;
     return 0;
 }
 
-
-
-/*
-*       APARTADO 3. MEDIR LOS TIEMPOS DE EJECUCION DE LOS BUCLES
-*       USAR FUNCION CLOCK -> t1 -t0 / CLK_YER = x tiempo por segundos
-*/
-
 /*
 *       APARTADO 5. REALIZAR COMPARATIVA PARA LA COMPILACION DE LAS OPCIONES -O0 Y -O2
-*       g++ fichero.cpp -o Executableijk -O0 -> x ms
-*       g++ fichero.c++ -o executableijk -O2 -> y ms
+*       g++ fichero.cpp -o Executableijk -O0 -> 56826.3 ms
+*       g++ fichero.c++ -o executableijk -O2 -> 52149.9 ms
 *           1- Puede pasar que O0 no optimiza nada
             2- Puede pasar que O2 realiza optimizaciones
         Conclusiones generales compilador
