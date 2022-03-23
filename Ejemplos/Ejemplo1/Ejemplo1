@@ -19,7 +19,8 @@ for(i=0;i<10;i++){
     }
 }
 
-i=0,j=0 | A(0,0),B(0,0) -> D.I (A) mod (c,w) = 0 -> A(0,0),B(0,0) dan fallo
+i=0,j=0 | A(0,0),B(0,0) -> D.I (A) mod (c,w) = 0 
+	-> A(0,0),B(0,0) dan fallo
 
 i=0,j=1 | A(0,1),A(0,3),B(0,1) -> D.I(B) mod(c,w) = 4
 
