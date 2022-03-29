@@ -26,12 +26,14 @@ int main(){
     // Inicializamos la semilla aleatoria
     srand(time(NULL));
     clock_t t0,t1;
-    // Rellenamos la matriz B
+    // Rellenamos las matriz A y B
     for(int i=0; i<tamano; i++){
         for(int j=0; j<tamano; j++){
             for(int k=0; k<tamano; k++){
-                // Rellenamos la matriz con valores aleatorios en el rango [1,10]
-                B[i][j][k] = rand() % nMax + nMin;
+                // Rellenamos la matriz A con valores aleatorios en el rango [1,10]
+                A[i][j][k] = rand() % nMax + nMin;
+                // Rellenamos la matriz B con el valor 0
+                B[i][j][k] = 0;
             }
         }
     }
@@ -47,37 +49,14 @@ int main(){
             }
         }
     }
-    // Algoritmo de permutacion de bucles
-
-    /*
-        for(i=10; i<500) -> Li=10; Ui = 500 -> Ui - Li
-    */
-    
-    /*
-            for cada array X do 
-                for cada índice Ik do
-                    calcular Stride(X, Ik).
-                    calcular CacheTurns(X, Ik). Si no existe => 0.
-                end for
-            end for
-        
-            for cada índice Ik do 
-                for cada array X do
-                    sumar el valor de CacheTurns(X, Ik). 
-                end for
-                obtener Tacp(Ik).
-            end for
-Situar bucles en orden decreciente según valor de  Tacp(Ik).
-
-*/
     // Inicializamos el temporizador t0
     t0 = clock();
     // Aplicamos el algoritmo
     for(int i=0; i<N; i++){
         for(int j=0; j<N; j++){
-            for(int k=0; k<N; k++){
-                for(int l=0; l<N; l++){
-                    A[i][k][j] = B[k][l][i] + C[l][j][k][i] * D[k][j][l][i];
+            for(int l=0; l<N; l++){
+                for(int k=0; k<N; k++){
+                    B[k][l][i] = A[i][k][j] + C[l][j][k][i] * D[k][j][l][i];
                 }
             }
         }
