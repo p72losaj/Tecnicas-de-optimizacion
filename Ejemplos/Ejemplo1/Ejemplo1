@@ -39,7 +39,7 @@ Estudiar ocupacion memoria cache
 ############################################################################################
 
 2- Calculos necesarios
-	-> 256 (byte/cache) % 2 (vias/cache) = 156 (byte/cache)
+	-> 256 (byte/cache) % 2 (vias/cache) = 128 (byte/cache)
 	-> 128 (byte/via) % 16 (byte/bloque) = 8 (byte/via)
 
 real=4  A(500,500), B(500,500)
