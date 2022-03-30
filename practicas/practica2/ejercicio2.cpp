@@ -52,10 +52,10 @@ int main(){
     // Inicializamos el temporizador t0
     t0 = clock();
     // Aplicamos el algoritmo
-    for(int i=0; i<N; i++){
-        for(int j=0; j<N; j++){
-            for(int l=0; l<N; l++){
-                for(int k=0; k<N; k++){
+    for(int k=0; k<N; k++){
+        for(int l=0; l<N; l++){
+            for(int i=0; i<N; i++){
+                for(int j=0; j<N; j++){
                     B[k][l][i] = A[i][k][j] + C[l][j][k][i] * D[k][j][l][i];
                 }
             }
@@ -65,8 +65,7 @@ int main(){
     t1 = clock();
     // Obtenemos el tiempo de computo del algoritmo
     float tiempo = (float)(t1-t0) / CLOCKS_PER_SEC;
-    cout << "Se ha tardado " << tiempo*1000 << " ms en realizar el producto de las matrices" << endl;
-    
+    cout << "Se ha tardado " << tiempo*1000 << " ms en realizar el producto de las matrices" << endl;    
     
     return 0;
 }
