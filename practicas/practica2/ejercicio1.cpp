@@ -26,12 +26,14 @@ int main(){
     // Inicializamos la semilla aleatoria
     srand(time(NULL));
     clock_t t0,t1;
-    // Rellenamos la matriz B
+    // Rellenamos las matriz A y B
     for(int i=0; i<tamano; i++){
         for(int j=0; j<tamano; j++){
             for(int k=0; k<tamano; k++){
-                // Rellenamos la matriz con valores aleatorios en el rango [1,10]
-                B[i][j][k] = rand() % nMax + nMin;
+                // Rellenamos la matriz A con valores aleatorios en el rango [1,10]
+                A[i][j][k] = rand() % nMax + nMin;
+                // Rellenamos la matriz B con el valor 0
+                B[i][j][k] = 0;
             }
         }
     }
@@ -54,7 +56,7 @@ int main(){
         for(int j=0; j<N; j++){
             for(int k=0; k<N; k++){
                 for(int l=0; l<N; l++){
-                    A[i][k][j] = B[k][l][i] + C[l][j][k][i] * D[k][j][l][i];
+                    B[k][l][i] = A[i][k][j] + C[l][j][k][i] * D[k][j][l][i];
                 }
             }
         }

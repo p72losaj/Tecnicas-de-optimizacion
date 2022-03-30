@@ -1,13 +1,46 @@
+Estructura generica de la cache
+
+	1. C: Numero de conjuntos o sets
+	2. L: Numero de bloques por conjuntoo asociatividad
+	2. w: Número de palabras por bloque
+	3. Politica de reemplazo LRU
+##################################################################	
+Descriptor de acceso lineal a memoria (LMAD)
+
+Permite obtener la posición de memoria de una determinada referencia a un array para una iteración concreta del bucle anidado
+
+Ref(X,I) = f_1·I_1 + … + f_k·I_k· ∏_(i=1) ^ (k-1) * Di + … + f_M·I_M·∏_(i=1)^(M-1) * Di
+
+###################################################################
+
+Stride del array 
+	
+##################################################################
+Stride: Ubicación en palabras de memoria consecutivas a través de la jerarquía de memoria
+	- Accesos con cualquier otro stride. Ubicación en palabras de memoria con un salto de: ∆stride = (stride / W) mod C
+S: Velocidad del hardware en operaciones por segundo
+F: Numero de operaciones ejecutadas por un programa.
+T: Tiempo en ejecutar un programa en segundos
+U: Utilizacion del sistema por un programa (U = F / S*T)
+	- Optimo si U=1
+Q: Reuso de operandos almacenados en memoria
+	- Relacion entre el numero de veces que el operando es referenciado y el numero de veces que es cargado en un registro
+Ocupacion ordenada de la cache: NewStride = (( C + 1 - (stride * mod (C*W) / W ) * W
+
+###########################################################################################
 Estudiar ocupacion memoria cache
 
-265 bits
-Ac = 2
-T. bs = 16 bits
-T.W = 4 bits
+1- Datos del ejemplo
+	-> Asociatividad (Numero de vias de la cache) = 2
+	-> Tamano de la cache = 265 bytes
+	-> Tamano de bloque = 16 bytes
+	-> Tamano de palabra = 4 bytes
+	
+############################################################################################
 
-256 byte/cache % 2 vias/cache = 156 byte/cache
-
-128 byte/via % 16 byte/bloque = 8 byte/via
+2- Calculos necesarios
+	-> 256 (byte/cache) % 2 (vias/cache) = 128 (byte/cache)
+	-> 128 (byte/via) % 16 (byte/bloque) = 8 (byte/via)
 
 real=4  A(500,500), B(500,500)
 
