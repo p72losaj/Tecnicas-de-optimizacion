@@ -25,7 +25,7 @@ int main(){
     // Inicializamos la semilla aleatoria
     srand(time(NULL));
     clock_t t0,t1;
-    int k=1;
+    // int k=1;
     // Rellenamos las matriz A y B
     for(int i=0; i<tamano; i++){
         for(int j=0; j<tamano; j++){
@@ -41,13 +41,13 @@ int main(){
     // Inicializamos el temporizador t0
     t0 = clock();
     // Aplicamos el algoritmo
-    //for(int k = 0; k < 200; k++){
+    for(int k = 0; k < 200; k++){
         for(int i = 0; i < 2176; i++){
             for(int j = 0; j < 2176; j++){
                 A[j][i] = A[j][i] * k + B[i][j] * C[j][i] + 3.14 * D[i][j];
             }
         }
-  //  }
+  }
     // Inicializamos el temporizador t1
     t1 = clock();
     // Obtenemos el tiempo de computo del algoritmo
@@ -59,6 +59,10 @@ int main(){
 }
 
 /*
+        original_O0 -> Tarda 20093.6 ms
+        original_O2 -> Tarda 7775.7 ms
+        padding_O0 -> Tarda 10245.9 ms
+        padding_O2 -> Tarda 7611.6 ms
         GCD (SetStrike,C (2^x) ) = Y -> Y = 1 or Y != 1
         Si GCD es par -> Stride = Stride + w
 */  
