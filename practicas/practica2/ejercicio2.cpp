@@ -56,7 +56,7 @@ int main(){
         for(int l=0; l<N; l++){
             for(int i=0; i<N; i++){
                 for(int j=0; j<N; j++){
-                    B[k][l][i] = A[i][k][j] + C[l][j][k][i] * D[k][j][l][i];
+                    B[k][l][i] =+ A[i][k][j] + C[l][j][k][i] * D[k][j][l][i];
                 }
             }
         }
