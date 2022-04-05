@@ -29,14 +29,14 @@ int main(){
     // Rellenamos las matriz A y B
     for(int i=0; i<tamano; i++){
         for(int j=0; j<tamano; j++){
-            for(int k=0; k<tamano; k++){
+            
                 // Rellenamos las matrices B,C y D con valores aleatorios en el rango [1,10]
                 B[i][j]= rand() % nMax + nMin;
                 C[i][j]= rand() % nMax + nMin;
                 D[i][j]= rand() % nMax + nMin;
                 // Rellenamos la matriz A con el valor 0
                 A[i][j]= 0;
-            }
+            
         }
     }
     
