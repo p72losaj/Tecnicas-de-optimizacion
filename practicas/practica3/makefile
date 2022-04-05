@@ -14,7 +14,7 @@ padded_O0: padded.cpp
 
 # Creamos el fichero ejecutable original_O2
 
-original_02: original.cpp
+original_O2: original.cpp
 	g++ original.cpp -o original_O2 -O2
 
 # Creamos el ejecutable padded_O2
