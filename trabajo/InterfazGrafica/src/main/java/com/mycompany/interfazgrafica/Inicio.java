@@ -28,10 +28,11 @@ public class Inicio extends javax.swing.JFrame {
 
         tituloInicioJLabel = new javax.swing.JLabel();
         DatosMemoriaCacheButton = new javax.swing.JToggleButton();
-        InicioJTextField = new javax.swing.JTextField();
+        CerrarjButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio de la aplicacion");
+        setMaximumSize(new java.awt.Dimension(500, 500));
 
         tituloInicioJLabel.setText("INTERFAZ GRAFICA TECNICAS DE OPTIMIZACION");
 
@@ -42,11 +43,10 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        InicioJTextField.setEditable(false);
-        InicioJTextField.setText("Pulsa el boton para introducir los datos de la memoria cache");
-        InicioJTextField.addActionListener(new java.awt.event.ActionListener() {
+        CerrarjButton1.setText("Cerrar");
+        CerrarjButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InicioJTextFieldActionPerformed(evt);
+                CerrarjButton1ActionPerformed(evt);
             }
         });
 
@@ -56,28 +56,25 @@ public class Inicio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(InicioJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 254, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(tituloInicioJLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
+                .addComponent(tituloInicioJLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addComponent(DatosMemoriaCacheButton)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addComponent(CerrarjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tituloInicioJLabel)
-                .addGap(48, 48, 48)
-                .addComponent(InicioJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(DatosMemoriaCacheButton)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DatosMemoriaCacheButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CerrarjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -89,9 +86,11 @@ public class Inicio extends javax.swing.JFrame {
         new ObtencionDatosMemoriaCache().setVisible(true);
     }//GEN-LAST:event_DatosMemoriaCacheButtonActionPerformed
 
-    private void InicioJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioJTextFieldActionPerformed
+    private void CerrarjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarjButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InicioJTextFieldActionPerformed
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_CerrarjButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,8 +128,8 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CerrarjButton1;
     private javax.swing.JToggleButton DatosMemoriaCacheButton;
-    private javax.swing.JTextField InicioJTextField;
     private javax.swing.JLabel tituloInicioJLabel;
     // End of variables declaration//GEN-END:variables
 }

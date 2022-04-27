@@ -4,19 +4,24 @@
  */
 package com.mycompany.interfazgrafica;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author jaime
  */
 public class ResultadosObtenidos extends javax.swing.JFrame {
 
-    public int C = 0;
+    public int C = 0; // Numero de conjuntos o sets
+    public int W = 0; // Numero de palabras por bloque
+    
     /**
      * Creates new form ResultadosObtenidos
      */
-    public ResultadosObtenidos(int C) {
+    public ResultadosObtenidos(int C, int W) {
         initComponents();
         CJTextField.setText(String.valueOf(C));
+        WJTextField.setText(String.valueOf(W));
     }
 
     /**
@@ -28,9 +33,19 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         titulojLabel = new javax.swing.JLabel();
         NumeroSetsJTextField = new javax.swing.JTextField();
         CJTextField = new javax.swing.JTextField();
+        PalabrasBloquejTextField = new javax.swing.JTextField();
+        WJTextField = new javax.swing.JTextField();
+        VolverjButton = new javax.swing.JButton();
+        TecnicasOptimizacionjButton = new javax.swing.JButton();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +66,30 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
             }
         });
 
+        PalabrasBloquejTextField.setEditable(false);
+        PalabrasBloquejTextField.setText(" Numero de palabras por bloque = ");
+        PalabrasBloquejTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PalabrasBloquejTextFieldActionPerformed(evt);
+            }
+        });
+
+        WJTextField.setEditable(false);
+
+        VolverjButton.setText("Volver");
+        VolverjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverjButtonActionPerformed(evt);
+            }
+        });
+
+        TecnicasOptimizacionjButton.setText("Menu de tecnicas de optimizacion");
+        TecnicasOptimizacionjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TecnicasOptimizacionjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,20 +99,39 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
                 .addComponent(titulojLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(NumeroSetsJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(CJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 78, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(NumeroSetsJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                        .addGap(22, 22, 22)
+                        .addComponent(CJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(PalabrasBloquejTextField)
+                            .addComponent(TecnicasOptimizacionjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(VolverjButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                            .addComponent(WJTextField))))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titulojLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NumeroSetsJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 252, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PalabrasBloquejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(WJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VolverjButton)
+                    .addComponent(TecnicasOptimizacionjButton))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -86,6 +144,23 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
     private void CJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CJTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CJTextFieldActionPerformed
+
+    private void PalabrasBloquejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PalabrasBloquejTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PalabrasBloquejTextFieldActionPerformed
+
+    private void VolverjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverjButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ObtencionDatosMemoriaCache().setVisible(true);
+    }//GEN-LAST:event_VolverjButtonActionPerformed
+
+    private void TecnicasOptimizacionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TecnicasOptimizacionjButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        JFrame ventana = new MenuTecnicasOptimizacion(C,W);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_TecnicasOptimizacionjButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,9 +191,9 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            private int C;
+            private int C, W;
             public void run() {
-                new ResultadosObtenidos(this.C).setVisible(true);
+                new ResultadosObtenidos(this.C,this.W).setVisible(true);
             }
         });
     }
@@ -126,6 +201,12 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CJTextField;
     private javax.swing.JTextField NumeroSetsJTextField;
+    private javax.swing.JTextField PalabrasBloquejTextField;
+    private javax.swing.JButton TecnicasOptimizacionjButton;
+    private javax.swing.JButton VolverjButton;
+    private javax.swing.JTextField WJTextField;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel titulojLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,7 +33,7 @@ public class ObtencionDatosMemoriaCache extends javax.swing.JFrame {
         NumeroSetsJTextField = new javax.swing.JTextField();
         txtC = new javax.swing.JTextField();
         PalabrasBloqueJTextField = new javax.swing.JTextField();
-        W = new javax.swing.JTextField();
+        txtW = new javax.swing.JTextField();
         ContinuarjButton = new javax.swing.JButton();
         VolverjButton = new javax.swing.JButton();
 
@@ -64,10 +64,10 @@ public class ObtencionDatosMemoriaCache extends javax.swing.JFrame {
         PalabrasBloqueJTextField.setEditable(false);
         PalabrasBloqueJTextField.setText(" Numero de palabras por bloque = ");
 
-        W.setText("0");
-        W.addActionListener(new java.awt.event.ActionListener() {
+        txtW.setText("0");
+        txtW.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WActionPerformed(evt);
+                txtWActionPerformed(evt);
             }
         });
 
@@ -98,21 +98,20 @@ public class ObtencionDatosMemoriaCache extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(ContinuarjButton)
-                                .addGap(92, 92, 92)
-                                .addComponent(VolverjButton))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(NumeroSetsJTextField)
                                     .addComponent(PalabrasBloqueJTextField))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(W, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(txtC, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtW)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ContinuarjButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(VolverjButton)))))
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,12 +125,12 @@ public class ObtencionDatosMemoriaCache extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PalabrasBloqueJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(W, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                    .addComponent(txtW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ContinuarjButton)
                     .addComponent(VolverjButton))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -141,9 +140,10 @@ public class ObtencionDatosMemoriaCache extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroSetsJTextFieldActionPerformed
 
-    private void WActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WActionPerformed
+    private void txtWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_WActionPerformed
+        int W = Integer.parseInt(this.txtW.getText());
+    }//GEN-LAST:event_txtWActionPerformed
 
     private void VolverjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverjButtonActionPerformed
         // TODO add your handling code here:
@@ -156,7 +156,8 @@ public class ObtencionDatosMemoriaCache extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         int C = Integer.parseInt(txtC.getText());
-        JFrame ventana = new ResultadosObtenidos(C);
+        int W = Integer.parseInt(txtW.getText());
+        JFrame ventana = new ResultadosObtenidos(C,W);
         ventana.setVisible(true);
     }//GEN-LAST:event_ContinuarjButtonActionPerformed
 
@@ -205,10 +206,10 @@ public class ObtencionDatosMemoriaCache extends javax.swing.JFrame {
     private javax.swing.JTextField NumeroSetsJTextField;
     private javax.swing.JTextField PalabrasBloqueJTextField;
     private javax.swing.JButton VolverjButton;
-    private javax.swing.JTextField W;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel tituloLabel;
     private javax.swing.JTextField txtC;
+    private javax.swing.JTextField txtW;
     // End of variables declaration//GEN-END:variables
 }
