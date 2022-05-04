@@ -14,14 +14,31 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
 
     public int C = 0; // Numero de conjuntos o sets
     public int W = 0; // Numero de palabras por bloque
-    
+    public int tamano = 50; // Por defecto, el tamano de las matrices es 50
     /**
      * Creates new form ResultadosObtenidos
      */
     public ResultadosObtenidos(int C, int W) {
         initComponents();
+        this.C = C;
+        this.W = W;
         CJTextField.setText(String.valueOf(C));
         WJTextField.setText(String.valueOf(W));
+        jTextField1.setVisible(false);
+        TiempojTextField.setVisible(false);
+    }
+    
+    /**
+     * Creates new form ResultadosObtenidos
+     */
+    public ResultadosObtenidos(int C, int W, double t) {
+        initComponents();
+        this.C = C;
+        this.W = W;
+        CJTextField.setText(String.valueOf(C));
+        WJTextField.setText(String.valueOf(W));
+        TiempojTextField.setText(String.valueOf(t));
+        
     }
 
     /**
@@ -40,8 +57,14 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         CJTextField = new javax.swing.JTextField();
         PalabrasBloquejTextField = new javax.swing.JTextField();
         WJTextField = new javax.swing.JTextField();
-        VolverjButton = new javax.swing.JButton();
-        TecnicasOptimizacionjButton = new javax.swing.JButton();
+        NoOptimizacionjButton = new javax.swing.JButton();
+        PermutacionjButton = new javax.swing.JButton();
+        PaddingjButton = new javax.swing.JButton();
+        VolverjButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        TiempojTextField = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        tamanojTextField = new javax.swing.JTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -76,17 +99,52 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
 
         WJTextField.setEditable(false);
 
-        VolverjButton.setText("Volver");
-        VolverjButton.addActionListener(new java.awt.event.ActionListener() {
+        NoOptimizacionjButton.setText("No aplicar una tecnica de optimizacion");
+        NoOptimizacionjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VolverjButtonActionPerformed(evt);
+                NoOptimizacionjButtonActionPerformed(evt);
             }
         });
 
-        TecnicasOptimizacionjButton.setText("Menu de tecnicas de optimizacion");
-        TecnicasOptimizacionjButton.addActionListener(new java.awt.event.ActionListener() {
+        PermutacionjButton.setText("Aplicar permutacion");
+        PermutacionjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TecnicasOptimizacionjButtonActionPerformed(evt);
+                PermutacionjButtonActionPerformed(evt);
+            }
+        });
+
+        PaddingjButton.setText("Aplicar padding");
+
+        VolverjButton1.setText("Cambiar memoria");
+        VolverjButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverjButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setEditable(false);
+        jTextField1.setText("Tiempo de computo en segundos = ");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        TiempojTextField.setEditable(false);
+        TiempojTextField.setText("0.0");
+        TiempojTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TiempojTextFieldActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setEditable(false);
+        jTextField2.setText("Tamano de las matrices = ");
+
+        tamanojTextField.setText("2000");
+        tamanojTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tamanojTextFieldActionPerformed(evt);
             }
         });
 
@@ -95,43 +153,69 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(titulojLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(NumeroSetsJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addGap(22, 22, 22)
-                        .addComponent(CJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(titulojLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(NumeroSetsJTextField)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(PalabrasBloquejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(WJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(PalabrasBloquejTextField)
-                            .addComponent(TecnicasOptimizacionjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(VolverjButton, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                            .addComponent(WJTextField))))
-                .addGap(0, 15, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NoOptimizacionjButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TiempojTextField))
+                            .addComponent(PermutacionjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PaddingjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(VolverjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tamanojTextField)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titulojLabel)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NumeroSetsJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(WJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PalabrasBloquejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PalabrasBloquejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tamanojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VolverjButton)
-                    .addComponent(TecnicasOptimizacionjButton))
-                .addGap(31, 31, 31))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TiempojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(NoOptimizacionjButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(PermutacionjButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(PaddingjButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(VolverjButton1))
         );
 
         pack();
@@ -149,18 +233,40 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PalabrasBloquejTextFieldActionPerformed
 
-    private void VolverjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverjButtonActionPerformed
+    private void NoOptimizacionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoOptimizacionjButtonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new ObtencionDatosMemoriaCache().setVisible(true);
-    }//GEN-LAST:event_VolverjButtonActionPerformed
-
-    private void TecnicasOptimizacionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TecnicasOptimizacionjButtonActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        JFrame ventana = new MenuTecnicasOptimizacion(C,W);
+        double tiempo = calcularTiempoComputo1();
+        JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
         ventana.setVisible(true);
-    }//GEN-LAST:event_TecnicasOptimizacionjButtonActionPerformed
+        
+    }//GEN-LAST:event_NoOptimizacionjButtonActionPerformed
+
+    private void PermutacionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PermutacionjButtonActionPerformed
+        // TODO add your handling code here:
+        double tiempo = calcularTiempoComputoPermutacion();
+        JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_PermutacionjButtonActionPerformed
+
+    private void VolverjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverjButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        JFrame ventana = new ObtencionDatosMemoriaCache();
+        ventana.setVisible(true);
+
+    }//GEN-LAST:event_VolverjButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void TiempojTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TiempojTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TiempojTextFieldActionPerformed
+
+    private void tamanojTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamanojTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tamanojTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,16 +303,95 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
             }
         });
     }
+    
+    /**
+     * Funcion que calcula el tiempo de computo del algoritmo sin aplicar 
+     * tecnicas de optimizacion
+     * @return Tiempo de computo en segundos
+     */
+    private double calcularTiempoComputo1() {
+        int tamano = Integer.parseInt(this.tamanojTextField.getText());
+        int A[][] = new int[tamano][tamano];
+        int B[][] = new int[tamano][tamano];
+        int C[][] = new int[tamano][tamano];
+        
+        // Rellenamos las matrices
+        for(int i = 0; i < tamano; i++){
+            for(int j=0; j < tamano; j++){
+                A[i][j] = (int) (Math.random()*9+1);
+                B[i][j] = (int) (Math.random()*9+1);
+            }
+        }
+        long startTime = System.nanoTime();
+        // Algoritmo
+        for (int i = 0; i < tamano; i++) {
+            // Dentro recorremos las filas de la primera (A)
+            for (int j = 0; j < tamano; j++) {
+                // Y cada columna de la primera (A)
+                for (int k = 0; k < tamano; k++) {
+                    // Multiplicamos y sumamos resultado
+                    C[i][j] = C[i][j] + A[i][k] * B[k][j];
+                }
+            }
+        }
+        
+        long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+        double seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        return seconds;
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CJTextField;
+    private javax.swing.JButton NoOptimizacionjButton;
     private javax.swing.JTextField NumeroSetsJTextField;
+    private javax.swing.JButton PaddingjButton;
     private javax.swing.JTextField PalabrasBloquejTextField;
-    private javax.swing.JButton TecnicasOptimizacionjButton;
-    private javax.swing.JButton VolverjButton;
+    private javax.swing.JButton PermutacionjButton;
+    private javax.swing.JTextField TiempojTextField;
+    private javax.swing.JButton VolverjButton1;
     private javax.swing.JTextField WJTextField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField tamanojTextField;
     private javax.swing.JLabel titulojLabel;
     // End of variables declaration//GEN-END:variables
+    /**
+     * Funcion que calcula el tiempo de producto de 2 matrices 
+     * aplicando permutacion
+     * @return Tiempo de computo en segundos
+     */
+    private double calcularTiempoComputoPermutacion() {
+        int tamano = Integer.parseInt(this.tamanojTextField.getText());
+        int A[][] = new int[tamano][tamano];
+        int B[][] = new int[tamano][tamano];
+        int C[][] = new int[tamano][tamano];
+        
+        // Rellenamos las matrices
+        for(int i = 0; i < tamano; i++){
+            for(int j=0; j < tamano; j++){
+                A[i][j] = (int) (Math.random()*9+1);
+                B[i][j] = (int) (Math.random()*9+1);
+            }
+        }
+        long startTime = System.nanoTime();
+        // Algoritmo
+        for (int i = 0; i < tamano; i++) {
+            // Dentro recorremos las filas de la primera (A)
+            for (int k = 0; k < tamano; k++) {
+                // Y cada columna de la primera (A)
+                for (int j = 0; j < tamano; j++) {
+                    // Multiplicamos y sumamos resultado
+                    C[i][k] = C[i][k] + A[i][j] * B[j][k];
+                }
+            }
+        }
+        
+        long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+        double seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        return seconds;
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
