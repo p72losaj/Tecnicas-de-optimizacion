@@ -237,6 +237,7 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         // TODO add your handling code here:
         double tiempo = calcularTiempoComputo1();
         JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
+        this.setVisible(false);
         ventana.setVisible(true);
         
     }//GEN-LAST:event_NoOptimizacionjButtonActionPerformed
@@ -245,6 +246,7 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         // TODO add your handling code here:
         double tiempo = calcularTiempoComputoPermutacion();
         JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
+        this.setVisible(false);
         ventana.setVisible(true);
     }//GEN-LAST:event_PermutacionjButtonActionPerformed
 
