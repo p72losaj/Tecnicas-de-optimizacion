@@ -386,7 +386,7 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
                 // Y cada columna de la primera (A)
                 for (int j = 0; j < tamano; j++) {
                     // Multiplicamos y sumamos resultado
-                    C[i][k] = C[i][k] + A[i][j] * B[j][k];
+                    C[i][j] = C[i][j] + A[i][k] * B[k][j];
                 }
             }
         }
