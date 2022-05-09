@@ -65,6 +65,7 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         TiempojTextField = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         tamanojTextField = new javax.swing.JTextField();
+        VectorjButton = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -148,6 +149,8 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
             }
         });
 
+        VectorjButton.setText("Vector iteraciones (i,k,j)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,17 +178,18 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NoOptimizacionjButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(TiempojTextField))
                             .addComponent(PermutacionjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(PaddingjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(VolverjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(tamanojTextField)))))
+                                .addComponent(tamanojTextField))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(TiempojTextField))
+                            .addComponent(VectorjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -200,17 +204,19 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(WJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PalabrasBloquejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tamanojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TiempojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(NoOptimizacionjButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(VectorjButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(PermutacionjButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PaddingjButton)
@@ -244,10 +250,10 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
 
     private void PermutacionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PermutacionjButtonActionPerformed
         // TODO add your handling code here:
-        double tiempo = calcularTiempoComputoPermutacion();
-        JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
-        this.setVisible(false);
-        ventana.setVisible(true);
+        // double tiempo = calcularTiempoComputoPermutacion();
+        // JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
+        // this.setVisible(false);
+        // ventana.setVisible(true);
     }//GEN-LAST:event_PermutacionjButtonActionPerformed
 
     private void VolverjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverjButton1ActionPerformed
@@ -315,7 +321,7 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         int tamano = Integer.parseInt(this.tamanojTextField.getText());
         int A[][] = new int[tamano][tamano];
         int B[][] = new int[tamano][tamano];
-        int C[][] = new int[tamano][tamano];
+        int R[][] = new int[tamano][tamano];
         
         // Rellenamos las matrices
         for(int i = 0; i < tamano; i++){
@@ -332,7 +338,44 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
                 // Y cada columna de la primera (A)
                 for (int k = 0; k < tamano; k++) {
                     // Multiplicamos y sumamos resultado
-                    C[i][j] = C[i][j] + A[i][k] * B[k][j];
+                    R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                }
+            }
+        }
+        
+        long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+        double seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        return seconds;
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    /**
+     * Funcion que calcula el tiempo de producto de 2 matrices 
+     * aplicando permutacion
+     * @return Tiempo de computo en segundos
+     */
+    private double calcularTiempoComputoVector() {
+        int tamano = Integer.parseInt(this.tamanojTextField.getText());
+        int A[][] = new int[tamano][tamano];
+        int B[][] = new int[tamano][tamano];
+        int R[][] = new int[tamano][tamano];
+        
+        // Rellenamos las matrices
+        for(int i = 0; i < tamano; i++){
+            for(int j=0; j < tamano; j++){
+                A[i][j] = (int) (Math.random()*9+1);
+                B[i][j] = (int) (Math.random()*9+1);
+            }
+        }
+        long startTime = System.nanoTime();
+        // Algoritmo
+        for (int i = 0; i < tamano; i++) {
+            // Dentro recorremos las filas de la primera (A)
+            for (int k = 0; k < tamano; k++) {
+                // Y cada columna de la primera (A)
+                for (int j = 0; j < tamano; j++) {
+                    // Multiplicamos y sumamos resultado
+                    R[i][j] = R[i][j] + A[i][k] * B[k][j];
                 }
             }
         }
@@ -351,6 +394,7 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
     private javax.swing.JTextField PalabrasBloquejTextField;
     private javax.swing.JButton PermutacionjButton;
     private javax.swing.JTextField TiempojTextField;
+    private javax.swing.JButton VectorjButton;
     private javax.swing.JButton VolverjButton1;
     private javax.swing.JTextField WJTextField;
     private javax.swing.JScrollPane jScrollPane1;
@@ -360,40 +404,5 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
     private javax.swing.JTextField tamanojTextField;
     private javax.swing.JLabel titulojLabel;
     // End of variables declaration//GEN-END:variables
-    /**
-     * Funcion que calcula el tiempo de producto de 2 matrices 
-     * aplicando permutacion
-     * @return Tiempo de computo en segundos
-     */
-    private double calcularTiempoComputoPermutacion() {
-        int tamano = Integer.parseInt(this.tamanojTextField.getText());
-        int A[][] = new int[tamano][tamano];
-        int B[][] = new int[tamano][tamano];
-        int C[][] = new int[tamano][tamano];
-        
-        // Rellenamos las matrices
-        for(int i = 0; i < tamano; i++){
-            for(int j=0; j < tamano; j++){
-                A[i][j] = (int) (Math.random()*9+1);
-                B[i][j] = (int) (Math.random()*9+1);
-            }
-        }
-        long startTime = System.nanoTime();
-        // Algoritmo
-        for (int i = 0; i < tamano; i++) {
-            // Dentro recorremos las filas de la primera (A)
-            for (int k = 0; k < tamano; k++) {
-                // Y cada columna de la primera (A)
-                for (int j = 0; j < tamano; j++) {
-                    // Multiplicamos y sumamos resultado
-                    C[i][k] = C[i][k] + A[i][j] * B[j][k];
-                }
-            }
-        }
-        
-        long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
-        double seconds = (double)endTime / 1000000000.0; // tiempo en segundos
-        return seconds;
-        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }
