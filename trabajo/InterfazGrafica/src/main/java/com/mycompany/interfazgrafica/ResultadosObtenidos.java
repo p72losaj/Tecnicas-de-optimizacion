@@ -150,6 +150,11 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         });
 
         VectorjButton.setText("Vector iteraciones (i,k,j)");
+        VectorjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VectorjButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -276,6 +281,14 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tamanojTextFieldActionPerformed
 
+    private void VectorjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VectorjButtonActionPerformed
+        // TODO add your handling code here:
+        double tiempo = calcularTiempoComputoVector();
+        JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
+        this.setVisible(false);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_VectorjButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -375,11 +388,7 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
                 // Y cada columna de la primera (A)
                 for (int j = 0; j < tamano; j++) {
                     // Multiplicamos y sumamos resultado
-<<<<<<< HEAD
                     R[i][j] = R[i][j] + A[i][k] * B[k][j];
-=======
-                    C[i][j] = C[i][j] + A[i][k] * B[k][j];
->>>>>>> 9821b7191c74ff9aaf41d8ec532870be8fef6079
                 }
             }
         }

@@ -231,6 +231,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Vector iteraciones (i,k,j)"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VectorjButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
