@@ -54,7 +54,7 @@ public class ObtencionDatosMemoriaCache extends javax.swing.JFrame {
             }
         });
 
-        txtC.setText("0");
+        txtC.setText("64");
         txtC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCActionPerformed(evt);
@@ -64,7 +64,7 @@ public class ObtencionDatosMemoriaCache extends javax.swing.JFrame {
         PalabrasBloqueJTextField.setEditable(false);
         PalabrasBloqueJTextField.setText(" Numero de palabras por bloque = ");
 
-        txtW.setText("0");
+        txtW.setText("16");
         txtW.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtWActionPerformed(evt);
