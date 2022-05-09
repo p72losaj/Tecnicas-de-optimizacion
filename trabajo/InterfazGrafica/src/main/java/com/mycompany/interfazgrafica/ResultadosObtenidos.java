@@ -375,7 +375,11 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
                 // Y cada columna de la primera (A)
                 for (int j = 0; j < tamano; j++) {
                     // Multiplicamos y sumamos resultado
+<<<<<<< HEAD
                     R[i][j] = R[i][j] + A[i][k] * B[k][j];
+=======
+                    C[i][j] = C[i][j] + A[i][k] * B[k][j];
+>>>>>>> 9821b7191c74ff9aaf41d8ec532870be8fef6079
                 }
             }
         }
