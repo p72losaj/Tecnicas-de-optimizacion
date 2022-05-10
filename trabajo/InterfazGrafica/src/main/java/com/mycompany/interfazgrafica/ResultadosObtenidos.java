@@ -115,6 +115,11 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         });
 
         PaddingjButton.setText("Aplicar padding");
+        PaddingjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PaddingjButtonActionPerformed(evt);
+            }
+        });
 
         VolverjButton1.setText("Cambiar memoria");
         VolverjButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -255,10 +260,10 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
 
     private void PermutacionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PermutacionjButtonActionPerformed
         // TODO add your handling code here:
-        // double tiempo = calcularTiempoComputoPermutacion();
-        // JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
-        // this.setVisible(false);
-        // ventana.setVisible(true);
+        double tiempo = calcularTiempoComputoPermutacion();
+        JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
+        this.setVisible(false);
+        ventana.setVisible(true);
     }//GEN-LAST:event_PermutacionjButtonActionPerformed
 
     private void VolverjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverjButton1ActionPerformed
@@ -288,6 +293,14 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         this.setVisible(false);
         ventana.setVisible(true);
     }//GEN-LAST:event_VectorjButtonActionPerformed
+
+    private void PaddingjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaddingjButtonActionPerformed
+        // TODO add your handling code here:
+        double tiempo = calcularTiempoComputoPadding();
+        JFrame ventana = new ResultadosObtenidos(this.C,this.W,tiempo);
+        this.setVisible(false);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_PaddingjButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,5 +430,435 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
     private javax.swing.JTextField tamanojTextField;
     private javax.swing.JLabel titulojLabel;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Funcion que calcula el tiempo de computo al aplicar permutacion
+     * @return Tiempo de computo en segundos
+     */
+    private double calcularTiempoComputoPermutacion() {
+        int tamano = Integer.parseInt(this.tamanojTextField.getText());
+        int A[][] = new int[tamano][tamano];
+        int B[][] = new int[tamano][tamano];
+        int R[][] = new int[tamano][tamano];
+        float[] CacheTurns = new float [3];
+        double seconds = 0.0;
+        // Rellenamos las matrices
+        for(int i = 0; i < tamano; i++){
+            for(int j=0; j < tamano; j++){
+                A[i][j] = (int) (Math.random()*9+1);
+                B[i][j] = (int) (Math.random()*9+1);
+            }
+        }
+        
+        // Calculamos el vector cacheTurns del algoritmo
+        CacheTurns = obtenerCacheTurns(tamano,this.C,this.W);
+        // Vector de iteraciones i,j,k
+        if( (CacheTurns[0] >= CacheTurns[1]) && CacheTurns[1] >= CacheTurns[2]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int i = 0; i < tamano; i++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int j = 0; j < tamano; j++) {
+                // Y cada columna de la primera (A)
+                    for (int k = 0; k < tamano; k++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones i,k,j
+        else if( (CacheTurns[0] >= CacheTurns[2]) && CacheTurns[2] >= CacheTurns[1]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int i = 0; i < tamano; i++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int k = 0; k < tamano; k++) {
+                // Y cada columna de la primera (A)
+                    for (int j = 0; j < tamano; j++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones j,i,k
+        if( (CacheTurns[1] >= CacheTurns[0]) && CacheTurns[0] >= CacheTurns[2]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int j = 0; j < tamano; j++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int i = 0; i < tamano; i++) {
+                // Y cada columna de la primera (A)
+                    for (int k = 0; k < tamano; k++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones j,k,i
+        else if( (CacheTurns[1] >= CacheTurns[2]) && CacheTurns[2] >= CacheTurns[1]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int j = 0; j < tamano; j++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int k = 0; k < tamano; k++) {
+                // Y cada columna de la primera (A)
+                    for (int i = 0; i < tamano; i++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones k,i,j
+        else if( (CacheTurns[2] >= CacheTurns[0]) && CacheTurns[0] >= CacheTurns[1]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int k = 0; k < tamano; k++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int i = 0; i < tamano; i++) {
+                // Y cada columna de la primera (A)
+                    for (int j = 0; j < tamano; j++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones k,j,i
+        else if( (CacheTurns[2] >= CacheTurns[1]) && CacheTurns[1] >= CacheTurns[0]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int k = 0; k < tamano; k++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int j = 0; j < tamano; j++) {
+                // Y cada columna de la primera (A)
+                    for (int i = 0; i < tamano; i++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        return seconds;
+    }
+
+    /**
+     * Funcion que obtiene el vector CacheTurns al aplicar permutacion
+     * @param tamano Tamano de las matrices
+     * @param C Numero de conjuntos o sets de la memoria cache
+     * @param W Numero de palabras por bloque de la mamoria cache
+     * @return Vector cacheTurns
+     */
+    private float[] obtenerCacheTurns(int tamano, int C, int W) {
+        // Vectores de la matriz A
+        float[] StrideA = new float [3];
+        float[] SetStrideA = new float [3];
+        float[] CacheTurnsA = new float[3];
+        // Vectores de la matriz B
+        float[] StrideB = new float [3];
+        float[] SetStrideB = new float [3];
+        float[] CacheTurnsB = new float[3];
+        // Vectores de la matriz R
+        float[] StrideR = new float [3];
+        float[] SetStrideR = new float [3];
+        float[] CacheTurnsR = new float[3];
+        // Vector CacheTurns
+        float[] CacheTurns = new float[3];
+        // Calculamos el Stride de la matriz A
+        StrideA[0] = tamano;
+        StrideA[1] = 1;
+        StrideA[2] = 0;
+        // Calculamos el stride de la matriz B
+        StrideB[0] = 0;
+        StrideB[1] = tamano;
+        StrideB[2] = 1;
+        // Calculamos el stride de la matriz R
+        StrideR[0] = tamano;
+        StrideR[1] = 0;
+        StrideR[2] = 1;
+        // Calculamos el valor del SetStride de la matriz A
+        SetStrideA[0] = Math.abs(StrideA[0]/W)%C;
+        SetStrideA[1] = Math.abs(StrideA[1]/W)%C;
+        SetStrideA[2] = Math.abs(StrideA[2]/W)%C;
+        // Calculamos el valor del SetStride de la matriz B
+        SetStrideB[0] = Math.abs(StrideB[0]/W)%C;
+        SetStrideB[1] = Math.abs(StrideB[1]/W)%C;
+        SetStrideB[2] = Math.abs(StrideB[2]/W)%C;
+        // Calculamos el valor del SetStride de la matriz R
+        SetStrideR[0] = Math.abs(StrideR[0]/W)%C;
+        SetStrideR[1] = Math.abs(StrideR[1]/W)%C;
+        SetStrideR[2] = Math.abs(StrideR[2]/W)%C;
+        // Calculamos el valor del cacheTurns de la matriz A
+        CacheTurnsA[0] = ((tamano+1)*StrideA[0]*SetStrideA[0])/(C*W);
+        CacheTurnsA[1] = ((tamano+1)*StrideA[1]*SetStrideA[1])/(C*W);
+        CacheTurnsA[2] = ((tamano+1)*StrideA[2]*SetStrideA[2])/(C*W);
+        // Calculamos el valor del cacheTurns de la matriz B
+        CacheTurnsB[0] = ((tamano+1)*StrideB[0]*SetStrideB[0])/(C*W);
+        CacheTurnsB[1] = ((tamano+1)*StrideB[1]*SetStrideB[1])/(C*W);
+        CacheTurnsB[2] = ((tamano+1)*StrideB[2]*SetStrideB[2])/(C*W);
+        // Calculamos el valor del cacheTurns de la matriz R
+        CacheTurnsR[0] = ((tamano+1)*StrideR[0]*SetStrideR[0])/(C*W);
+        CacheTurnsR[1] = ((tamano+1)*StrideR[1]*SetStrideR[1])/(C*W);
+        CacheTurnsR[2] = ((tamano+1)*StrideR[2]*SetStrideR[2])/(C*W);
+        // Calculamos el valor de CacheTurns para cada indice
+        CacheTurns[0] = CacheTurnsA[0]+CacheTurnsB[0]+CacheTurnsR[0];
+        CacheTurns[1] = CacheTurnsA[1]+CacheTurnsB[1]+CacheTurnsR[1];
+        CacheTurns[2] = CacheTurnsA[2]+CacheTurnsB[2]+CacheTurnsR[2];
+        return CacheTurns;
+    }
+    /**
+     * Funcion que calcula el tiempo de computo al aplicar padding
+     * @return 
+     */
+    private double calcularTiempoComputoPadding() {
+        int tamano = Integer.parseInt(this.tamanojTextField.getText());
+        int A[][] = new int[tamano][tamano];
+        int B[][] = new int[tamano][tamano];
+        int R[][] = new int[tamano][tamano];
+        float[] CacheTurns = new float [3];
+        double seconds = 0.0;
+        // Rellenamos las matrices
+        for(int i = 0; i < tamano; i++){
+            for(int j=0; j < tamano; j++){
+                A[i][j] = (int) (Math.random()*9+1);
+                B[i][j] = (int) (Math.random()*9+1);
+            }
+        }
+        // Calculamos el vector cacheTurns del algoritmo
+        CacheTurns = obtenerCacheTurns2(tamano,this.C,this.W);
+        if( (CacheTurns[0] >= CacheTurns[1]) && CacheTurns[1] >= CacheTurns[2]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int i = 0; i < tamano; i++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int j = 0; j < tamano; j++) {
+                // Y cada columna de la primera (A)
+                    for (int k = 0; k < tamano; k++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones i,k,j
+        else if( (CacheTurns[0] >= CacheTurns[2]) && CacheTurns[2] >= CacheTurns[1]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int i = 0; i < tamano; i++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int k = 0; k < tamano; k++) {
+                // Y cada columna de la primera (A)
+                    for (int j = 0; j < tamano; j++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones j,i,k
+        if( (CacheTurns[1] >= CacheTurns[0]) && CacheTurns[0] >= CacheTurns[2]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int j = 0; j < tamano; j++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int i = 0; i < tamano; i++) {
+                // Y cada columna de la primera (A)
+                    for (int k = 0; k < tamano; k++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones j,k,i
+        else if( (CacheTurns[1] >= CacheTurns[2]) && CacheTurns[2] >= CacheTurns[1]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int j = 0; j < tamano; j++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int k = 0; k < tamano; k++) {
+                // Y cada columna de la primera (A)
+                    for (int i = 0; i < tamano; i++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones k,i,j
+        else if( (CacheTurns[2] >= CacheTurns[0]) && CacheTurns[0] >= CacheTurns[1]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int k = 0; k < tamano; k++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int i = 0; i < tamano; i++) {
+                // Y cada columna de la primera (A)
+                    for (int j = 0; j < tamano; j++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        // Vector de iteraciones k,j,i
+        else if( (CacheTurns[2] >= CacheTurns[1]) && CacheTurns[1] >= CacheTurns[0]){
+            long startTime = System.nanoTime();
+            // Algoritmo
+            for (int k = 0; k < tamano; k++) {
+                // Dentro recorremos las filas de la primera (A)
+                for (int j = 0; j < tamano; j++) {
+                // Y cada columna de la primera (A)
+                    for (int i = 0; i < tamano; i++) {
+                        // Multiplicamos y sumamos resultado
+                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    }
+                }
+            }
+            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+        }
+        return seconds;
+    }
+    
+    /**
+     * Funcion que obtiene el vector CacheTurns al aplicar padding
+     * @param tamano Tamano de las matrices
+     * @param C Numero de conjuntos o sets de la memoria cache
+     * @param W Numero de palabras por bloque de la mamoria cache
+     * @return Vector cacheTurns
+     */
+    private float[] obtenerCacheTurns2(int tamano, int C, int W) {
+        // Vectores de la matriz A
+        float[] StrideA = new float [3];
+        float[] SetStrideA = new float [3];
+        float[] CacheTurnsA = new float[3];
+        // Vectores de la matriz B
+        float[] StrideB = new float [3];
+        float[] SetStrideB = new float [3];
+        float[] CacheTurnsB = new float[3];
+        // Vectores de la matriz R
+        float[] StrideR = new float [3];
+        float[] SetStrideR = new float [3];
+        float[] CacheTurnsR = new float[3];
+        // Vector CacheTurns
+        float[] CacheTurns = new float[3];
+        // Vector NewSetStride
+        float [] NewStride = new float[3];
+        // Calculamos el Stride de la matriz A
+        StrideA[0] = tamano;
+        StrideA[1] = 1;
+        StrideA[2] = 0;
+        // Calculamos el stride de la matriz B
+        StrideB[0] = 0;
+        StrideB[1] = tamano;
+        StrideB[2] = 1;
+        // Calculamos el stride de la matriz R
+        StrideR[0] = tamano;
+        StrideR[1] = 0;
+        StrideR[2] = 1;
+        // Calculamos el valor del SetStride de la matriz A
+        SetStrideA[0] = Math.abs(StrideA[0]/W)%C;
+        SetStrideA[1] = Math.abs(StrideA[1]/W)%C;
+        SetStrideA[2] = Math.abs(StrideA[2]/W)%C;
+        // Calculamos el valor del SetStride de la matriz B
+        SetStrideB[0] = Math.abs(StrideB[0]/W)%C;
+        SetStrideB[1] = Math.abs(StrideB[1]/W)%C;
+        SetStrideB[2] = Math.abs(StrideB[2]/W)%C;
+        // Calculamos el valor del SetStride de la matriz R
+        SetStrideR[0] = Math.abs(StrideR[0]/W)%C;
+        SetStrideR[1] = Math.abs(StrideR[1]/W)%C;
+        SetStrideR[2] = Math.abs(StrideR[2]/W)%C;
+        
+        // Comprobamos si SetStride es par para todos los casos en la matriz A
+        if((SetStrideA[0]%2== 0)&&(SetStrideA[1]%2==0)&&(SetStrideA[2]%2==0)){
+            StrideA[0]= StrideA[0]+W;
+            StrideA[1]= StrideA[1]+W;
+            StrideA[2]= StrideA[2]+W;
+        }
+            // Aplicamos el incremento en el stride
+        else{
+            NewStride[0] = (C+1-(StrideA[0] % (C*W))/W) *W;
+            NewStride[1] = (C+1-(StrideA[1] % (C*W))/W) *W;
+            NewStride[2] = (C+1-(StrideA[2] % (C*W))/W) *W;
+            StrideA[0] = NewStride[0];
+            StrideA[1] = NewStride[1];
+            StrideA[2] = NewStride[2];
+        }
+        
+        // Comprobamos si SetStride es par para todos los casos en la matriz B
+        if((SetStrideB[0]%2== 0)&&(SetStrideB[1]%2==0)&&(SetStrideB[2]%2==0)){
+            StrideB[0]= StrideB[0]+W;
+            StrideB[1]= StrideB[1]+W;
+            StrideB[2]= StrideB[2]+W;
+        }
+            // Aplicamos el incremento en el stride
+        else{
+            NewStride[0] = (C+1-(StrideB[0] % (C*W))/W) *W;
+            NewStride[1] = (C+1-(StrideB[1] % (C*W))/W) *W;
+            NewStride[2] = (C+1-(StrideB[2] % (C*W))/W) *W;
+            StrideB[0] = NewStride[0];
+            StrideB[1] = NewStride[1];
+            StrideB[2] = NewStride[2];
+        }
+        
+        // Comprobamos si SetStride es par para todos los casos en la matriz R
+        if((SetStrideR[0]%2== 0)&&(SetStrideR[1]%2==0)&&(SetStrideR[2]%2==0)){
+            StrideR[0]= StrideR[0]+W;
+            StrideR[1]= StrideR[1]+W;
+            StrideR[2]= StrideR[2]+W;
+        }
+            // Aplicamos el incremento en el stride
+        else{
+            NewStride[0] = (C+1-(StrideR[0] % (C*W))/W) *W;
+            NewStride[1] = (C+1-(StrideR[1] % (C*W))/W) *W;
+            NewStride[2] = (C+1-(StrideR[2] % (C*W))/W) *W;
+            StrideR[0] = NewStride[0];
+            StrideR[1] = NewStride[1];
+            StrideR[2] = NewStride[2];
+        }
+
+        // Calculamos el valor del cacheTurns de la matriz A
+        CacheTurnsA[0] = ((tamano+1)*StrideA[0]*SetStrideA[0])/(C*W);
+        CacheTurnsA[1] = ((tamano+1)*StrideA[1]*SetStrideA[1])/(C*W);
+        CacheTurnsA[2] = ((tamano+1)*StrideA[2]*SetStrideA[2])/(C*W);
+        // Calculamos el valor del cacheTurns de la matriz B
+        CacheTurnsB[0] = ((tamano+1)*StrideB[0]*SetStrideB[0])/(C*W);
+        CacheTurnsB[1] = ((tamano+1)*StrideB[1]*SetStrideB[1])/(C*W);
+        CacheTurnsB[2] = ((tamano+1)*StrideB[2]*SetStrideB[2])/(C*W);
+        // Calculamos el valor del cacheTurns de la matriz R
+        CacheTurnsR[0] = ((tamano+1)*StrideR[0]*SetStrideR[0])/(C*W);
+        CacheTurnsR[1] = ((tamano+1)*StrideR[1]*SetStrideR[1])/(C*W);
+        CacheTurnsR[2] = ((tamano+1)*StrideR[2]*SetStrideR[2])/(C*W);
+        // Calculamos el valor de CacheTurns para cada indice
+        CacheTurns[0] = CacheTurnsA[0]+CacheTurnsB[0]+CacheTurnsR[0];
+        CacheTurns[1] = CacheTurnsA[1]+CacheTurnsB[1]+CacheTurnsR[1];
+        CacheTurns[2] = CacheTurnsA[2]+CacheTurnsB[2]+CacheTurnsR[2];
+        return CacheTurns;
+    }
     
 }
