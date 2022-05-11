@@ -1,5 +1,5 @@
 /*
-    PRACTICA 2
+    PRACTICA 3
     REALIZADO POR JAIME LORENZO SANCHEZ
 */
 
@@ -43,13 +43,13 @@ int main(){
     // Inicializamos el temporizador t0
     t0 = clock();
     // Aplicamos el algoritmo
-    //for(int k = 0; k < 200; k++){
+    for(int k = 0; k < 200; k++){
         for(int i = 0; i < 2176; i++){
             for(int j = 0; j < 2176; j++){
                 A[j][i] = A[j][i] * k + B[i][j] * C[j][i] + 3.14 * D[i][j];
             }
         }
-    //}
+    }
     // Inicializamos el temporizador t1
     t1 = clock();
     // Obtenemos el tiempo de computo del algoritmo
