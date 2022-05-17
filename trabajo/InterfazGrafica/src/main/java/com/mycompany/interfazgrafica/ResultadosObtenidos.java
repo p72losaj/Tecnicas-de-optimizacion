@@ -582,16 +582,16 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         float[] CacheTurns = new float[3];
         // Calculamos el Stride de la matriz A
         StrideA[0] = tamano;
-        StrideA[1] = 1;
-        StrideA[2] = 0;
+        StrideA[1] = 0;
+        StrideA[2] = 1;
         // Calculamos el stride de la matriz B
         StrideB[0] = 0;
-        StrideB[1] = tamano;
-        StrideB[2] = 1;
+        StrideB[1] = 1;
+        StrideB[2] = tamano;
         // Calculamos el stride de la matriz R
         StrideR[0] = tamano;
-        StrideR[1] = 0;
-        StrideR[2] = 1;
+        StrideR[1] = 1;
+        StrideR[2] = 0;
         // Calculamos el valor del SetStride de la matriz A
         SetStrideA[0] = Math.abs(StrideA[0]/W)%C;
         SetStrideA[1] = Math.abs(StrideA[1]/W)%C;
