@@ -455,107 +455,97 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         
         // Calculamos el vector cacheTurns del algoritmo
         CacheTurns = obtenerCacheTurns(tamano,this.C,this.W);
-        // Vector de iteraciones i,j,k
-        if( (CacheTurns[0] >= CacheTurns[1]) && CacheTurns[1] >= CacheTurns[2]){
-            long startTime = System.nanoTime();
-            // Algoritmo
-            for (int i = 0; i < tamano; i++) {
-                // Dentro recorremos las filas de la primera (A)
-                for (int j = 0; j < tamano; j++) {
-                // Y cada columna de la primera (A)
-                    for (int k = 0; k < tamano; k++) {
-                        // Multiplicamos y sumamos resultado
-                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
-                    }
-                }
-            }
-            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
-            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
-        }
-        // Vector de iteraciones i,k,j
-        else if( (CacheTurns[0] >= CacheTurns[2]) && CacheTurns[2] >= CacheTurns[1]){
-            long startTime = System.nanoTime();
-            // Algoritmo
-            for (int i = 0; i < tamano; i++) {
-                // Dentro recorremos las filas de la primera (A)
-                for (int k = 0; k < tamano; k++) {
-                // Y cada columna de la primera (A)
-                    for (int j = 0; j < tamano; j++) {
-                        // Multiplicamos y sumamos resultado
-                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
-                    }
-                }
-            }
-            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
-            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
-        }
-        // Vector de iteraciones j,i,k
-        if( (CacheTurns[1] >= CacheTurns[0]) && CacheTurns[0] >= CacheTurns[2]){
-            long startTime = System.nanoTime();
-            // Algoritmo
-            for (int j = 0; j < tamano; j++) {
-                // Dentro recorremos las filas de la primera (A)
+        System.out.println(CacheTurns[0] + " " + CacheTurns[1] + " " + CacheTurns[2]);
+        if(CacheTurns[0] >= CacheTurns[1] && CacheTurns[0] >= CacheTurns[2]){
+            // Vector de iteraciones (i,j,k)
+            if(CacheTurns[1] > CacheTurns[2]){
+                System.out.println("Calculando tiempo del vector (i,j,k)");
+                long startTime = System.nanoTime();
                 for (int i = 0; i < tamano; i++) {
-                // Y cada columna de la primera (A)
-                    for (int k = 0; k < tamano; k++) {
-                        // Multiplicamos y sumamos resultado
-                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
-                    }
-                }
-            }
-            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
-            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
-        }
-        // Vector de iteraciones j,k,i
-        else if( (CacheTurns[1] >= CacheTurns[2]) && CacheTurns[2] >= CacheTurns[1]){
-            long startTime = System.nanoTime();
-            // Algoritmo
-            for (int j = 0; j < tamano; j++) {
-                // Dentro recorremos las filas de la primera (A)
-                for (int k = 0; k < tamano; k++) {
-                // Y cada columna de la primera (A)
-                    for (int i = 0; i < tamano; i++) {
-                        // Multiplicamos y sumamos resultado
-                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
-                    }
-                }
-            }
-            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
-            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
-        }
-        // Vector de iteraciones k,i,j
-        else if( (CacheTurns[2] >= CacheTurns[0]) && CacheTurns[0] >= CacheTurns[1]){
-            long startTime = System.nanoTime();
-            // Algoritmo
-            for (int k = 0; k < tamano; k++) {
-                // Dentro recorremos las filas de la primera (A)
-                for (int i = 0; i < tamano; i++) {
-                // Y cada columna de la primera (A)
                     for (int j = 0; j < tamano; j++) {
-                        // Multiplicamos y sumamos resultado
-                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                        for (int k = 0; k < tamano; k++) {
+                            R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                        }
                     }
                 }
+                long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+                seconds = (double)endTime / 1000000000.0; // tiempo en segundos
             }
-            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
-            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+            // Vector de iteraciones (i,k,j)
+            else{
+                System.out.println("Calculando tiempo del vector (i,k,j)");
+                long startTime = System.nanoTime();
+                for (int i = 0; i < tamano; i++) {
+                    for (int k = 0; k < tamano; k++) {
+                        for (int j = 0; j < tamano; j++) {
+                            R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                        }
+                    }
+                }
+                long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+                seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+            }
         }
-        // Vector de iteraciones k,j,i
-        else if( (CacheTurns[2] >= CacheTurns[1]) && CacheTurns[1] >= CacheTurns[0]){
-            long startTime = System.nanoTime();
-            // Algoritmo
-            for (int k = 0; k < tamano; k++) {
-                // Dentro recorremos las filas de la primera (A)
+        else if(CacheTurns[1] >= CacheTurns[0] && CacheTurns[1]>=CacheTurns[2]){
+            // Vector de iteraciones (j,i,k)
+            if(CacheTurns[0] > CacheTurns[2]){
+                System.out.println("Calculando tiempo del vector (j,i,k)");
+                long startTime = System.nanoTime();
                 for (int j = 0; j < tamano; j++) {
-                // Y cada columna de la primera (A)
                     for (int i = 0; i < tamano; i++) {
-                        // Multiplicamos y sumamos resultado
-                        R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                        for (int k = 0; k < tamano; k++) {
+                            R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                        }
                     }
                 }
+                long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+                seconds = (double)endTime / 1000000000.0; // tiempo en segundos
             }
-            long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
-            seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+            // Vector de iteraciones (j,k,i)
+            else{
+                System.out.println("Calculando tiempo del vector (j,k,i)");
+                long startTime = System.nanoTime();
+                // Algoritmo
+                for (int j = 0; j < tamano; j++) {
+                    for (int k = 0; k < tamano; k++) {
+                        for (int i = 0; i < tamano; i++) {
+                            R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                        }
+                    }
+                }
+                long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+                seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+            }
+        }
+        else{
+            // Vector de iteraciones (k,i,j)
+            System.out.println("Calculando tiempo del vector (k,i,j)");
+            if(CacheTurns[0] > CacheTurns[1]){
+                long startTime = System.nanoTime();
+                for (int k = 0; k < tamano; k++) {
+                    for (int i = 0; i < tamano; i++) {
+                        for (int j = 0; j < tamano; j++) {
+                            R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                        }
+                    }
+                }
+                long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+                seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+            }
+            // Vector de iteraciones (k,j,i)
+            else{
+                System.out.println("Calculando tiempo del vector (k,j,i)");
+                long startTime = System.nanoTime();
+                for (int k = 0; k < tamano; k++) {
+                    for (int i = 0; i < tamano; i++) {
+                        for (int j = 0; j < tamano; j++) {
+                            R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                        }
+                    }
+                }
+                long endTime = System.nanoTime() - startTime; // tiempo en que se ejecuta su método
+                seconds = (double)endTime / 1000000000.0; // tiempo en segundos
+            }
         }
         return seconds;
     }
