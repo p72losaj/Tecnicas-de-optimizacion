@@ -670,7 +670,7 @@ public class ResultadosObtenidos extends javax.swing.JFrame {
         int newtamano = tamano; // Tamano inicial de las columnas de las matrices
         double SetStride = tamano; // Valor de setStride
         // Stride sera mucho mas grande que W si stride > 5 * W
-        if(tamano > (5*W) ){
+        if(tamano > W ){
             // Calculamos el nuevo setStride de la matrizA
             SetStride = getStride(tamano,this.C,this.W);
             // Calculamos el maximo comun divisor entre setStride y C
